@@ -1,0 +1,22 @@
+{
+  "appId": "com.walker.healthmanager",
+  "productName": "E-Health Manager",
+  "directories": {
+    "output": "release"
+  },
+  "files": [
+    "dist-electron/**/*",
+    "dist/**/*"
+  ],
+  "mac": {
+    "target": ["dmg"],
+    "category": "public.app-category.utilities"
+  },
+  "win": {
+    "target": ["nsis", "portable"]
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true
+  }
+}
