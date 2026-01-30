@@ -5,8 +5,15 @@
   "main": "dist-electron/main/index.js",
   "scripts": {
     "dev": "vite",
+    "start": "vite",
     "build": "vue-tsc --noEmit && vite build && electron-builder",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "type-check": "vue-tsc --noEmit",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": "eslint --fix"
   },
   "dependencies": {
     "tdesign-icons-vue-next": "^0.4.2",
@@ -14,11 +21,16 @@
     "vue": "^3.5.27"
   },
   "devDependencies": {
+    "@colorless/eslint-config": "^0.0.0",
     "@types/node": "^25.1.0",
     "@vitejs/plugin-vue": "^6.0.3",
     "electron": "^40.1.0",
     "electron-builder": "^26.4.0",
+    "eslint": "^9.39.2",
+    "globals": "^17.2.0",
+    "husky": "^9.1.7",
     "less": "^4.5.1",
+    "lint-staged": "^16.2.7",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vite-plugin-electron": "^0.29.0",

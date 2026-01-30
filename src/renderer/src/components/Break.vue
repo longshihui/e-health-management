@@ -23,7 +23,7 @@
 import { ref, onMounted, onUnmounted } from "vue";
 
 const timeLeft = ref(0);
-let timer: any = null;
+let timer: ReturnType<typeof setInterval> | null = null;
 
 onMounted(() => {
   if (window.electron) {
@@ -45,7 +45,7 @@ const startTimer = () => {
     if (timeLeft.value > 0) {
       timeLeft.value--;
     } else {
-      clearInterval(timer);
+      if (timer) clearInterval(timer);
     }
   }, 1000);
 };

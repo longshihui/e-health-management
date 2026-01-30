@@ -25,8 +25,8 @@
             <t-form
               :data="formData"
               :rules="rules"
-              @submit="onSubmit"
               label-align="top"
+              @submit="onSubmit"
             >
               <t-form-item label="使用时长 (分钟)" name="workDuration">
                 <t-input-number
