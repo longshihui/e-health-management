@@ -46,12 +46,12 @@ e-health-management/
 
 ### 脚本说明 (Scripts)
 
-| 命令 | 说明 |
-| --- | --- |
-| `pnpm install` | 安装项目依赖（严格使用 pnpm） |
-| `pnpm dev` | 启动开发环境，包含主进程和渲染进程的热更新 |
-| `pnpm build` | 执行类型检查并构建生产环境代码 |
-| `pnpm preview` | 预览构建后的产物 |
+| 命令           | 说明                                       |
+| -------------- | ------------------------------------------ |
+| `pnpm install` | 安装项目依赖（严格使用 pnpm）              |
+| `pnpm dev`     | 启动开发环境，包含主进程和渲染进程的热更新 |
+| `pnpm build`   | 执行类型检查并构建生产环境代码             |
+| `pnpm preview` | 预览构建后的产物                           |
 
 ### 适配性测试 (Compatibility)
 
@@ -66,8 +66,15 @@ e-health-management/
    git checkout -b feature/AmazingFeature
    ```
 3. **提交更改**:
-   - 遵循 Conventional Commits 规范 (e.g., `feat: add dark mode`, `fix: timer bug`).
-   - 代码风格请参考项目中的 ESLint/Prettier 配置。
+   - **自动化校验**: 本项目集成了 `husky` 和 `commitlint`，在提交时会自动校验 Commit Message 格式。
+   - **辅助工具**: 推荐使用 `pnpm commit` 命令，它会引导你生成符合规范的提交信息。
+   - **规范要求 (Conventional Commits)**:
+     - 格式: `type(scope): subject`
+     - 示例: `feat(core): add tray icon support`
+     - **Type**: 必须为 `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore` 之一。
+     - **Subject**: 长度不超过 50 字符，全小写，结尾不加句号。
+   - **代码质量**: 提交前会自动运行 TypeScript 类型检查和 ESLint 校验，请确保 `pnpm lint` 和 `pnpm type-check` 通过。
+
 4. **推送到分支**:
    ```bash
    git push origin feature/AmazingFeature

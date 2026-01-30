@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A lightweight health management application for desktop",
   "main": "dist-electron/main/index.js",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "start": "vite",
@@ -10,10 +11,16 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "type-check": "vue-tsc --noEmit",
+    "commit": "cz",
     "prepare": "husky"
   },
   "lint-staged": {
     "*.{js,ts,vue}": "eslint --fix"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
   },
   "dependencies": {
     "tdesign-icons-vue-next": "^0.4.2",
@@ -21,9 +28,14 @@
     "vue": "^3.5.27"
   },
   "devDependencies": {
+    "@colorless/commitlint-config": "^0.0.0",
     "@colorless/eslint-config": "^0.0.0",
+    "@commitlint/cli": "^20.3.1",
+    "@commitlint/cz-commitlint": "^20.3.1",
     "@types/node": "^25.1.0",
     "@vitejs/plugin-vue": "^6.0.3",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
     "electron": "^40.1.0",
     "electron-builder": "^26.4.0",
     "eslint": "^9.39.2",
