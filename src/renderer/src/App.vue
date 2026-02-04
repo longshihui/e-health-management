@@ -1,36 +1,61 @@
 <template>
   <div class="app-container">
-    <Settings v-if="currentView === 'settings'" />
-    <Break v-if="currentView === 'break'" />
+    <router-view />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import Settings from './components/Settings.vue';
-import Break from './components/Break.vue';
+import { onMounted } from "vue";
 
-const currentView = ref('settings');
+const applyTheme = (theme: "system" | "light" | "dark") => {
+  if (theme === "system") {
+    // Remove attribute to let TDesign/system handle it or implement system detection
+    // TDesign might need explicit 'light' or 'dark'
+    // For simplicity, let's assume system = light for now or use matchMedia
+    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.setAttribute(
+      "theme-mode",
+      isDark ? "dark" : "light",
+    );
+  } else {
+    document.documentElement.setAttribute("theme-mode", theme);
+  }
+};
 
-onMounted(() => {
-  // Simple hash routing
-  const updateView = () => {
-    const hash = window.location.hash.replace('#/', '').replace('#', '');
-    if (hash === 'break') {
-      currentView.value = 'break';
-    } else {
-      currentView.value = 'settings';
+onMounted(async () => {
+  if (window.electron) {
+    try {
+      const config = await window.electron.getConfig();
+      if (config.theme) {
+        applyTheme(config.theme);
+      }
+    } catch (error) {
+      console.error("Failed to load theme config:", error);
     }
-  };
-  
-  window.addEventListener('hashchange', updateView);
-  updateView();
+  }
 });
 </script>
 
 <style>
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  background-color: var(--td-bg-color-container);
+  color: var(--td-text-color-primary);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--td-scrollbar-color);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 </style>

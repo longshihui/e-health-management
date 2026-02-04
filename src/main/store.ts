@@ -1,17 +1,21 @@
 import { app } from "electron";
 import path from "path";
 import fs from "fs";
-
-export interface AppConfig {
-  workDuration: number; // in minutes
-  breakDuration: number; // in minutes
-  firstRun: boolean;
-}
+import { AppConfig } from "../types";
 
 const defaultConfig: AppConfig = {
   workDuration: 60,
   breakDuration: 10,
+  reminderType: "strong",
+  theme: "system",
+  autoLaunch: false,
   firstRun: true,
+  reminderSound: "default",
+  reminderTitle: "休息时间到！",
+  reminderMessage: "工作辛苦了，站起来活动一下吧~",
+  popupTextColor: "#000000",
+  popupBackgroundColor: "#ffffff",
+  popupBackgroundImage: "",
 };
 
 export class Store {

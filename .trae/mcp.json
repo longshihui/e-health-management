@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "echarts-server": {
+      "command": "npx",
+      "args": ["-y", "echarts-mcp-server"]
+    },
+    "tdesign-mcp-server": {
+      "command": "npx",
+      "args": ["-y", "tdesign-mcp-server"]
+    }
+  }
+}
